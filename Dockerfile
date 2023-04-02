@@ -2,6 +2,7 @@ FROM golang:1.13-alpine as builder
 ARG VERSION=0.0.1
 
 ENV GO111MODULE=on
+ENV GOPROXY=https://goproxy.cn,direct
 ENV CGO_ENABLED=0
 ENV GOOS=linux
 ENV GOARCH=amd64

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"k8s.io/api/core/v1"
-	schedulerapi "k8s.io/kubernetes/pkg/scheduler/apis/extender/v1"
+	v1 "k8s.io/api/core/v1"
+	schedulerapi "k8s.io/kubernetes/pkg/scheduler/api"
 )
 
 type Prioritize struct {
