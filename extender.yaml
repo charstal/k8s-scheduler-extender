@@ -56,17 +56,12 @@ data:
       {"name" : "HostName"}
     ],
     "priorities" : [
-      {"name" : "LeastRequestedPriority", "weight" : 1},
-      {"name" : "BalancedResourceAllocation", "weight" : 1},
       {"name" : "ServiceSpreadingPriority", "weight" : 1},
       {"name" : "EqualPriority", "weight" : 1}
     ],
     "extenders" : [{
       "urlPrefix": "http://localhost/scheduler",
-      "filterVerb": "predicates/always_true",
-      "prioritizeVerb": "priorities/zero_score",
-      "preemptVerb": "preemption",
-      "bindVerb": "",
+      "prioritizeVerb": "priorities/lvb",
       "weight": 1,
       "enableHttps": false,
       "nodeCacheCapable": false

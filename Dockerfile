@@ -1,4 +1,5 @@
-FROM golang:1.13-alpine as builder
+FROM golang:1.17-alpine as builder
+RUN apk add --no-cache git
 ARG VERSION=0.0.1
 
 ENV GO111MODULE=on
