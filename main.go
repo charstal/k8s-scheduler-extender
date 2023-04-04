@@ -30,10 +30,8 @@ const (
 )
 
 var (
-	version    string // injected via ldflags at build time
-	collection Collector
-
-	collector, _ = NewCollector()
+	version           string // injected via ldflags at build time
+	LoadMonitorClient *Collector
 
 	// TruePredicate = Predicate{
 	// 	Name: "always_true",
@@ -42,14 +40,14 @@ var (
 	// 	},
 	// }
 
-	ZeroPriority = Prioritize{
+	LVBPriority = Prioritize{
 		Name: "lvb",
 		Func: func(pod v1.Pod, nodes []v1.Node) (*schedulerapi.HostPriorityList, error) {
 			var priorityList schedulerapi.HostPriorityList
 
 			priorityList = make([]schedulerapi.HostPriority, len(nodes))
 			for i, node := range nodes {
-				metrics, _, _ := collector.GetNodeMetrics(node.Name)
+				metrics, _, _ := LoadMonitorClient.GetNodeMetrics(node.Name)
 				priorityList[i] = schedulerapi.HostPriority{
 					Host:  node.Name,
 					Score: RequestedBasedLoadVariation(&node, &pod, metrics),
@@ -161,11 +159,12 @@ func main() {
 	// 	AddPredicate(router, p)
 	// }
 
-	priorities := []Prioritize{ZeroPriority}
+	priorities := []Prioritize{LVBPriority}
 	for _, p := range priorities {
 		AddPrioritize(router, p)
 	}
 
+	LoadMonitorClient, _ = NewCollector()
 	// AddBind(router, NoBind)
 
 	log.Print("info: server starting on the port :80")

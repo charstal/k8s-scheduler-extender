@@ -103,7 +103,7 @@ spec:
         - name: my-scheduler-config
           mountPath: /my-scheduler
       - name: my-scheduler-extender-ctr
-        image: registry.cn-hangzhou.aliyuncs.com/charstal/k8s-scheduler-extender:v0.0.1
+        image: registry.cn-hangzhou.aliyuncs.com/charstal/scheduler-plugin-agent:v1.15.12
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
