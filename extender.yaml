@@ -98,7 +98,7 @@ spec:
           name: my-scheduler-config
       containers:
       - name: my-scheduler-ctr
-        image: gcr.io/google_containers/hyperkube:v1.16.3
+        image: registry.cn-hangzhou.aliyuncs.com/charstal/hyperkube:v1.15.12
         imagePullPolicy: IfNotPresent
         args:
         - kube-scheduler
