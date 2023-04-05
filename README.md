@@ -6,7 +6,7 @@ This is an example of [Kubernetes Scheduler Extender](https://github.com/kuberne
 ### 0. checkout the repo
 
 ```shell
-$ git clone git@github.com:everpeace/k8s-scheduler-extender-example.git
+$ git clone https://github.com/charstal/k8s-scheduler-extender.git
 $ cd k8s-scheduler-extender-example
 $ git submodule update --init
 ```
